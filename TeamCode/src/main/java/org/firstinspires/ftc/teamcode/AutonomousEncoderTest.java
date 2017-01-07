@@ -95,10 +95,22 @@ public class AutonomousEncoderTest extends LinearOpMode {
 
         encoderTankDrive(leftY, rightY);
         long time = System.currentTimeMillis();
-        while(System.currentTimeMillis() < time+500) {}
-        //while (leftbackMotor.getCurrentPosition() < leftTarget && rightbackMotor.getCurrentPosition() > rightTarget) {}
+        boolean atLeftTarget, atRightTarget;
+        while(true) {
+            atLeftTarget = leftbackMotor.getCurrentPosition() >= leftTarget;
+            atRightTarget = rightbackMotor.getCurrentPosition() >= rightTarget;
+            if (atLeftTarget && atRightTarget) {
+                break;
+            } else if (atLeftTarget) {
+                // TODO Move Right motor forward
+            } else if (atRightTarget) {
+                // TODO Move left motor forward
+            } else {
+                // TODO Move both motors forward
+            }
+            // TODO Wait 50 ms
+        }
         encoderTankDrive(0, 0);
-
     }
 
 
